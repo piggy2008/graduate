@@ -1,0 +1,70 @@
+\chapter{IFT52结合并招募IFT46至基体}
+\renewcommand{\leftmark}{第五章\quad IFT52结合并招募IFT46至基体}
+\begin{table}[]
+\scriptsize
+%\footnotesize
+\center
+\caption{Quantitative comparison results between the state-of-the-arts and the proposed approach. The best three scores are labeled in \textcolor{red}{red}, \textcolor{blue}{blue} and \textcolor{green}{green}, orderly.}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Method} & \multicolumn{2}{c|}{FBMS-T} & \multicolumn{2}{c|}{DAVIS-T} & \multicolumn{2}{c|}{SegTrack-V2} & \multicolumn{2}{c|}{ViSal} & \multicolumn{2}{c|}{MCL} & \multicolumn{2}{c|}{VOS-T} \\ \cline{2-13}
+ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ \\ \hline
+SIVM & 0.426 & 0.236 & 0.450 & 0.212 & 0.581 & 0.251 & 0.522 & 0.197 & 0.420 & 0.185 & 0.439 & 0.217 \\ \hline
+TIMP & 0.456 & 0.192 & 0.488 & 0.172 & 0.573 & 0.116 & 0.479 & 0.170 & 0.598 & 0.113 & 0.401 & 0.215 \\ \hline
+SPVM & 0.330 & 0.209 & 0.390 & 0.146 & 0.618 & 0.108 & 0.700 & 0.133 & 0.595 & 0.105 & 0.351 & 0.223 \\ \hline
+RWRV & 0.336 & 0.242 & 0.345 & 0.199 & 0.438 & 0.162 & 0.440 & 0.188 & 0.446 & 0.167 & 0.422 & 0.211 \\ \hline
+MB & 0.487 & 0.206 & 0.470 & 0.177 & 0.554 & 0.146 & 0.692 & 0.129 & 0.261 & 0.178 & 0.562 & 0.158 \\ \hline
+SAGM & 0.564 & 0.161 & 0.515 & 0.103 & 0.634 & 0.081 & 0.688 & 0.105 & 0.422 & 0.136 & 0.482 & 0.172 \\ \hline
+GFVM & 0.571 & 0.160 & 0.569 & 0.103 & 0.592 & 0.091 & 0.683 & 0.107 & 0.406 & 0.132 & 0.506 & 0.162 \\ \hline
+MSTM & 0.500 & 0.177 & 0.429 & 0.165 & 0.526 & 0.114 & 0.673 & 0.095 & 0.313 & 0.171 & 0.567 & 0.144 \\ \hline
+STBP & 0.595 & 0.152 & 0.544 & 0.096 & 0.640 & 0.061 & 0.622 & 0.163 & 0.607 & 0.078 & 0.526 & 0.163 \\ \hline
+SGSP & 0.630 & 0.172 & 0.655 & 0.138 & 0.673 & 0.124 & 0.677 & 0.165 & 0.645 & 0.100 & 0.426 & 0.236 \\ \hline
+SFLR & 0.660 & 0.117 & 0.727 & 0.056 & 0.745 & 0.037 & 0.779 & 0.062 & 0.669 & 0.054 & 0.546 & 0.145 \\ \hline
+SCOM & 0.797 & 0.079 & 0.783 & 0.048 & 0.764 & 0.030 & 0.831 & 0.122 & 0.422 & 0.204 & 0.690 & 0.162 \\ \hline
+SCNN & 0.762 & 0.095 & 0.714 & 0.064 & - & - & 0.831 & 0.071 & 0.628 & 0.054 & 0.609 & 0.109 \\ \hline
+DLVS & 0.759 & 0.091 & 0.708 & 0.061 & - & - & 0.852 & 0.048 & 0.551 & 0.060 & 0.675 & 0.099 \\ \hline
+FGRN & 0.767 & 0.088 & 0.783 & 0.043 & - & - & 0.848 & 0.045 & 0.625 & 0.044 & 0.669 & 0.097 \\ \hline
+MBNM & 0.816 & \textcolor{blue}{0.047} & 0.861 & 0.031 & 0.716 & 0.026 & 0.883 & 0.020 & 0.698 & 0.119 & 0.670 & 0.099 \\ \hline
+PDB & 0.821 & 0.064 & 0.855 & \textcolor{green}{0.028} & 0.800 & 0.024 & 0.888 & 0.032 & \textcolor{blue}{0.798} & \textcolor{red}{0.021} & 0.742 & 0.078 \\ \hline
+SSAV & \textcolor{red}{0.865} & \textcolor{red}{0.040} & \textcolor{green}{0.861} & \textcolor{blue}{0.028} & \textcolor{green}{0.801} & \textcolor{blue}{0.023} & \textcolor{green}{0.939} & \textcolor{green}{0.020} & 0.774 & \textcolor{blue}{0.027} & \textcolor{green}{0.742} & \textcolor{green}{0.073} \\ \hline \hline
+MRE & \textcolor{green}{0.843} & 0.057 & \textcolor{blue}{0.877} & 0.029 & \textcolor{blue}{0.890} & \textcolor{green}{0.024} & \textcolor{blue}{0.952} & \textcolor{blue}{0.015} & \textcolor{green}{0.794} & 0.034 & \textcolor{blue}{0.769} & \textcolor{blue}{0.073} \\ \hline
+MRI+CRF & \textcolor{blue}{0.851} & \textcolor{green}{0.052} & \textcolor{red}{0.887} & \textcolor{red}{0.018} & \textcolor{red}{0.897} & \textcolor{red}{0.014} & \textcolor{red}{0.954} & \textcolor{red}{0.010} & \textcolor{red}{0.803} & \textcolor{green}{0.031} & \textcolor{red}{0.770} & \textcolor{red}{0.061} \\ \hline
+\end{tabular}
+\end{table}
+\section{引言}
+\blindtext
+
+\section{材料与方法}
+\subsection{材料}
+\Blindtext
+
+\subsection{方法A}
+\Blindtext
+
+\subsection{方法B}
+\Blindtext
+
+\subsection{方法C}
+\Blindtext
+
+\subsection{方法D}
+\Blindtext
+
+\section{结果}
+\subsection{结果A}
+\Blindtext
+
+\subsection{结果B}
+\Blindtext
+
+\subsection{结果C}
+\Blindtext
+
+\subsection{结果D}
+\Blindtext
+
+\section{讨论}
+\Blindtext
+
+\section{小结}
+\Blindtext 
