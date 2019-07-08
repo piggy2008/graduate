@@ -145,7 +145,7 @@ ASPP结构是本文引入的另一个重要模块。该模块是在文献\cite{c
 \begin{aligned}
    s = f_{ex}(\bm{z}, \textbf{W}) = \sigma(g(\bm{z}, \bm{W})) = \sigma(\bm{W_2}\delta(\bm{W_1}\bm{z}))
  \end{aligned}
-\end{equation} 
+\end{equation}
 
 其中，$\bm{z}$即为压缩过程中得到的特征向量；$\bm{W_1} \in R^{\frac{C}{r}\times C} $ 和$\bm{W_2} \in R^{C\times \frac{C}{r}} $分别是两个全连接层的参数，$r$是压缩比，用来调整特征维度和计算效率；$\delta(\cdot)$和$\sigma(\cdot)$是两个激活函数，分别是sigmoid和ReLU。在获得特征图的权重$s$后，需要给原有的特征图乘上这一个权值，进行$f_s(\cdot)$操作：
 
@@ -208,8 +208,15 @@ ASPP结构是本文引入的另一个重要模块。该模块是在文献\cite{c
 
 最后，帧间运动特征增强网络使用的优化算法是梯度下降（SGD），两段训练的学习率分别为$10^{-3}$和$10^{-5}$；权衰量为$5 \times 10^{-4}$；动量分别是0.9和0.95；BaseLine网络的初始化使用的是ImageNet的初始化参数。
 
-\subsection{结果D}
-\Blindtext
+\subsection{视频显著性实验对比}
+在视频显著性目标检测实验中，本文主要对比了18个方法，其中非深度模型11个，深度模型7个。非深度模型主要集中前2017年以前，而且效果一般，这里简要介绍一下比较好的三个方法：
+
+\begin{itemize}
+  \item SFLR算法\cite{chen2017video}，其为low-rank矩阵模型。大体是先用超像素分割视频，然后使用帧间先验初步融合显著特征，最后通过low-rank矩阵完成最终的显著性检测。
+  \item SGSP算法\cite{liu2016saliency}，该方法旨在对视频序列建立一个图模型，并结合空间全局与局部信息生成显著图。
+  \item STBP算法\cite{xi2016salient}，考虑到背景先验在复杂场景和视频场景难以应用，其提出了结合使用SIFT流与双向传播的一致性来提取背景先验，从而利用带有时域信息的背景先验来完成显著性估计。
+\end{itemize}
+
 
 \section{讨论}
 \Blindtext
