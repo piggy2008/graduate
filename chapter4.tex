@@ -165,15 +165,48 @@ ASPP结构是本文引入的另一个重要模块。该模块是在文献\cite{c
 \end{equation} $A_i$即为显著图引导模块最后的输出先验图，在图\ref{framework3}也可以看到，$A_i$会与后一帧得到的增强后运动特征$M_{i+1}$结合去预测后一帧的显著图$P_{i+1}$。
 
 
-\section{结果}
-\subsection{结果A}
-\Blindtext
+\section{实验结果和分析}
 
-\subsection{结果B}
-\Blindtext
+为了验证本章模型在视频显著性目标检测和视频分割上的有效性，本章首先介绍两组评价标准，分别对应两个任务；其次，介绍本章实验使用到的数据集。接着，给出帧间运动增强网络的具体实现；之后，分别在两套指标下对比相应的其他模型；最后，验证本章方法中各个模块的有效性。
+\subsection{实验评价准则}
+为了验证显著性检测与视频分割两个任务，本章共使用的两组评价准则。其一仍与上两章相同，使用PR曲线和平均绝对误差（MAE）。同时，本章又引入了新的评价方法F-measure，其可定义为：
+\begin{equation}
+\label{f_measure}
+\begin{aligned}
+   F_\beta = \frac{(1+\beta^2)Precision \times Recall }{\beta^2\times Precision + Recall}
+ \end{aligned}
+\end{equation} 其中，Precision与Recall是通过求显著图的平均值得到；$\beta^2$被设定为0.3用以平衡recision与Recall。
 
-\subsection{结果C}
-\Blindtext
+第二组评价标准则主要与视频分割相关，有三个评价准则：区域相似性（region similarity）、轮廓准确性（contour accuracy）、时序稳定性（temporal stability）。
+
+区域相似性（J)是基于区域的分割相似度测量，它可以通过一定数量的错误标签提供直观且尺度不变的信息，其定义可以用下列公式表示：
+\begin{equation}
+\label{region_similarity}
+\begin{aligned}
+   J = \frac{\|M \cap G\|}{\|M \cup G\|}
+ \end{aligned}
+\end{equation}　其中，$M$和$G$分别表示算法分割结果和与之对应的真值（Ground Truth)。
+
+轮廓准确性（F)是从轮廓的角度分析，可以将分割结果图$M$视为一组闭合的轮廓$c(M)$，它们限定了掩模的空间范围。因此，它可以计算轮廓空间里面的所有像素点的准确率和召回率。其公式定义为：
+\begin{equation}
+\label{region_similarity}
+\begin{aligned}
+   F = \frac{2P_cR_c}{P_c + R_c}
+ \end{aligned}
+\end{equation} 其中，$P_c$和$R_c$即为轮廓区域里面的像素点准确率与召回率。
+
+时序稳定性（T），直观上来看，区域相似性表示的是分割结果的每个像素点是否匹配，而轮廓准确性则表达的是其轮廓上的准确率性，时序稳定性则表示的是时间维度上的相关信息，因为分割目标有可能随着时间的推移会存在一定的形变。其原理是最小化形状上下文描述子（Shape Context Descriptor）来实现。具体的计算公式参考文献［Dynamic Time　Warping (DTW)］。
+\subsection{数据集}
+本章一共使用到了７个数据集，分别是DUT-OMRON、FBMS、DAVIS、SegTrack-V2、MCL、VOS。其中DUT-OMRON和DAVIS的30个序列用于网络训练，FBMS的测试集、DAVIS余下的20个序列、SegTrack-V2、MCL和VOS用于验证本章提出的深度方法。在上述数据集中，DUT-OMRON是图像显著性检测的数据集，共5168张图像；其余都是视频显著性检测数据集，其中FBMS有720帧标签，DAVIS有3455帧标签，SegTrack-V2有1065帧标签，MCL共463帧标签，VOS共7467帧标签。
+
+\subsection{实现细节}
+本章的帧间运动特征增强网络在实现时需要注意几个细节：
+
+首先，最终的网络参数是通过两段学习得到。第一阶段训练使用的是图像数据（即DUT-OMRON）和DAVIS中的视频帧，同时网络是BaseLine网络，没有嵌入运动特征的学习。第二阶段使用的是视频序列训练,即DAVIS序列，并且以BaseLine网络参数作初始化，加入初始运动提取模块和帧间运动增强模块训练。
+
+其次，基础网络是DeeplabV3的改进，加入了对多尺度特征嵌入，具体做法参考了R3Net，把ResNeXt的前三个卷积块作为一个组，提取低阶特征；后两个卷积块为另一个组提取高阶特征，之后采用一个循环结构对两组特征进行融合。
+
+最后，帧间运动特征增强网络使用的优化算法是梯度下降（SGD），两段训练的学习率分别为$10^{-3}$和$10^{-5}$；权衰量为$5 \times 10^{-4}$；动量分别是0.9和0.95；BaseLine网络的初始化使用的是ImageNet的初始化参数。
 
 \subsection{结果D}
 \Blindtext
