@@ -218,9 +218,55 @@ ASPP结构是本文引入的另一个重要模块。该模块是在文献\cite{c
 \end{itemize}
 
 相比于非深度学习方法，深度方法的准确率明显要高需要，特别是最新的几个方法：FGRNE、PDB、MBNM、SSAV、SCOM等方法，其中FGRNE、PDB、SSAV在前文中有详细介绍，这里就不再赘述。MBNM也是比较新的方法，其主要是针对无监督视频分割任务，使用的方法是一个双向网络，并融入图模型，对整体的视频序列进行建模。
+\begin{table}[]
+\label{compare_all}
+\scriptsize
+%\footnotesize
+\center
+\caption{Quantitative comparison results between the state-of-the-arts and the proposed approach. The best three scores are labeled in \textcolor{red}{red}, \textcolor{blue}{blue} and \textcolor{green}{green}, orderly.}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Method} & \multicolumn{2}{c|}{FBMS-T} & \multicolumn{2}{c|}{DAVIS-T} & \multicolumn{2}{c|}{SegTrack-V2} & \multicolumn{2}{c|}{ViSal} & \multicolumn{2}{c|}{MCL} & \multicolumn{2}{c|}{VOS-T} \\ \cline{2-13}
+ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ & $F_\beta\uparrow$ & MAE$\downarrow$ \\ \hline
+SIVM & 0.426 & 0.236 & 0.450 & 0.212 & 0.581 & 0.251 & 0.522 & 0.197 & 0.420 & 0.185 & 0.439 & 0.217 \\ \hline
+TIMP & 0.456 & 0.192 & 0.488 & 0.172 & 0.573 & 0.116 & 0.479 & 0.170 & 0.598 & 0.113 & 0.401 & 0.215 \\ \hline
+SPVM & 0.330 & 0.209 & 0.390 & 0.146 & 0.618 & 0.108 & 0.700 & 0.133 & 0.595 & 0.105 & 0.351 & 0.223 \\ \hline
+RWRV & 0.336 & 0.242 & 0.345 & 0.199 & 0.438 & 0.162 & 0.440 & 0.188 & 0.446 & 0.167 & 0.422 & 0.211 \\ \hline
+MB & 0.487 & 0.206 & 0.470 & 0.177 & 0.554 & 0.146 & 0.692 & 0.129 & 0.261 & 0.178 & 0.562 & 0.158 \\ \hline
+SAGM & 0.564 & 0.161 & 0.515 & 0.103 & 0.634 & 0.081 & 0.688 & 0.105 & 0.422 & 0.136 & 0.482 & 0.172 \\ \hline
+GFVM & 0.571 & 0.160 & 0.569 & 0.103 & 0.592 & 0.091 & 0.683 & 0.107 & 0.406 & 0.132 & 0.506 & 0.162 \\ \hline
+MSTM & 0.500 & 0.177 & 0.429 & 0.165 & 0.526 & 0.114 & 0.673 & 0.095 & 0.313 & 0.171 & 0.567 & 0.144 \\ \hline
+STBP & 0.595 & 0.152 & 0.544 & 0.096 & 0.640 & 0.061 & 0.622 & 0.163 & 0.607 & 0.078 & 0.526 & 0.163 \\ \hline
+SGSP & 0.630 & 0.172 & 0.655 & 0.138 & 0.673 & 0.124 & 0.677 & 0.165 & 0.645 & 0.100 & 0.426 & 0.236 \\ \hline
+SFLR & 0.660 & 0.117 & 0.727 & 0.056 & 0.745 & 0.037 & 0.779 & 0.062 & 0.669 & 0.054 & 0.546 & 0.145 \\ \hline
+SCOM & 0.797 & 0.079 & 0.783 & 0.048 & 0.764 & 0.030 & 0.831 & 0.122 & 0.422 & 0.204 & 0.690 & 0.162 \\ \hline
+SCNN & 0.762 & 0.095 & 0.714 & 0.064 & - & - & 0.831 & 0.071 & 0.628 & 0.054 & 0.609 & 0.109 \\ \hline
+DLVS & 0.759 & 0.091 & 0.708 & 0.061 & - & - & 0.852 & 0.048 & 0.551 & 0.060 & 0.675 & 0.099 \\ \hline
+FGRN & 0.767 & 0.088 & 0.783 & 0.043 & - & - & 0.848 & 0.045 & 0.625 & 0.044 & 0.669 & 0.097 \\ \hline
+MBNM & 0.816 & \textcolor{blue}{0.047} & 0.861 & 0.031 & 0.716 & 0.026 & 0.883 & 0.020 & 0.698 & 0.119 & 0.670 & 0.099 \\ \hline
+PDB & 0.821 & 0.064 & 0.855 & \textcolor{green}{0.028} & 0.800 & 0.024 & 0.888 & 0.032 & \textcolor{blue}{0.798} & \textcolor{red}{0.021} & 0.742 & 0.078 \\ \hline
+SSAV & \textcolor{red}{0.865} & \textcolor{red}{0.040} & \textcolor{green}{0.861} & \textcolor{blue}{0.028} & \textcolor{green}{0.801} & \textcolor{blue}{0.023} & \textcolor{green}{0.939} & \textcolor{green}{0.020} & 0.774 & \textcolor{blue}{0.027} & \textcolor{green}{0.742} & \textcolor{green}{0.073} \\ \hline \hline
+MRE & \textcolor{green}{0.843} & 0.057 & \textcolor{blue}{0.877} & 0.029 & \textcolor{blue}{0.890} & \textcolor{green}{0.024} & \textcolor{blue}{0.952} & \textcolor{blue}{0.015} & \textcolor{green}{0.794} & 0.034 & \textcolor{blue}{0.769} & \textcolor{blue}{0.073} \\ \hline
+MRI+CRF & \textcolor{blue}{0.851} & \textcolor{green}{0.052} & \textcolor{red}{0.887} & \textcolor{red}{0.018} & \textcolor{red}{0.897} & \textcolor{red}{0.014} & \textcolor{red}{0.954} & \textcolor{red}{0.010} & \textcolor{red}{0.803} & \textcolor{green}{0.031} & \textcolor{red}{0.770} & \textcolor{red}{0.061} \\ \hline
+\end{tabular}
+\end{table}
+所有方法的对比如表\ref{compare_all}所示，可以看到所有的方法都有相应的结果，其中由于SCNN、FGRNE、DLVS三个方法在训练深度网络时使用了SegTrack-V2作为训练数据，因此这三个方法没有其结果。从表中我们可以看出，前期由启发式模型结合手工特征方法效果很一般，例如SAGM、SIVM等方法，主要由于当时深度特征还没有应用，手工特征的鲁棒性不是很高，很难应对复杂的视频场景。之后的方法，如上述介绍的三个最好的非深度学习方法：SFLR、SGSP、STBP，其结果很具体竞争力，但是这三个方法都或多或少地引入了光流信息。众所周知光流信息的获取需要计算每一个像素点的运动，所以效率不高，也严重影响最终显著性检测算法的速度。因此，引入光流的成本就大大增加。并且，这几个方法的大框架都是超像素分割加时空特征，都是分步方法，计算效率也进一步降低。相比于非深度方法，深度模型成功的关键在于引入学习性质的深度特征，其鲁棒性大大高于传统手工特征。所以，深度方法的准确率也高于非深度方法，并且由于全卷积深度模型的引入，深度方法在效率上也大大提高，而且渐渐地从分布模型发展到了端到端模型。但是，由于各个方法使用的深度模型不同，其效果也有不同。比如，SCOM主要使用的是深度特征，配合光流与优化函数进行显著性估计。SCOM同样是分步方法，且使用到了光流，因此效率不高。又比如DLVS是从连续两帧之间提取运动特征，所以运动特征提取不充分，从而显著性检测的准确率下降。综上所述，在本章方法提出之前，最好的深度模型是SSAV、FGRN、PDB与MBNM，其中SSAV与PDB都是端到端的深度方法。相比于以上的方法，本章的模型从结果上来看其显著性检测准确率也很好竞争力，特别是在VOS、ViSal、SegTrack-V2都取得了最高的结果，在其他数据集中也很好的表现。可见本章的帧间运动特征增强方法是有效的，其可以在原有运动特征的基础上，进一步加强特征的鲁棒性，并且本章提出的方法也是端到端的深度网络，运动效率上也同样很高。
 
-所有方法的对比如表
-
+\subsection{视频目标分割实验对比}
+\begin{table}[]
+\label{compare_all_seg}
+\begin{tabular}{|c|c|ccccccccc}
+\hline
+Dataset & Metric & \multicolumn{1}{c|}{MEN} & \multicolumn{1}{c|}{AGS} & \multicolumn{1}{c|}{PDB} & \multicolumn{1}{c|}{ARP} & \multicolumn{1}{c|}{LVO} & \multicolumn{1}{c|}{FSEG} & \multicolumn{1}{c|}{LMP} & \multicolumn{1}{c|}{SFL} & \multicolumn{1}{c|}{FST} \\ \hline
+\multirow{6}{*}{DAVIS} & J Mean & 79.5 & 79.7 & 77.2 & 76.2 & 75.9 & 70.7 & 70.0 & 67.4 & 55.8 \\
+ & J Recall & 91.7 & 91.1 & 90.1 & 91.1 & 89.1 & 83.5 & 85.0 & 81.4 & 64.9 \\
+ & J Decay & 0.0 & 0.0 & 0.9 & 7.0 & 0.0 & 1.5 & 1.3 & 6.2 & 0.0 \\ \cline{2-11} 
+ & F Mean & 78.0 & 77.4 & 74.5 & 72.1 & 72.1 & 65.3 & 65.9 & 66.7 & 51.1 \\
+ & F Recall & 88.6 & 85.8 & 84.4 & 83.5 & 83.4 & 73.8 & 79.2 & 77.1 & 51.6 \\
+ & F Decay & 0.0 & 0.0 & -0.2 & 7.9 & 1.3 & 1.8 & 2.5 & 5.1 & 2.9 \\ \hline
+\end{tabular}
+\end{table}
+在前文中已经提及，视频显著性目标检测与视频目标分割的任务很类似，因此，为了验证MRE方法在这一领域也具体可取性，本文也设计了与视频分割相关的实验比较。具体的实验如表\ref{compare_all_seg}所示，可以看到本章提出的MEN在几个评价准则上都有一定的竞争性。
 
 \section{讨论}
 \Blindtext
